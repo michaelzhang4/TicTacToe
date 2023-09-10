@@ -6,26 +6,21 @@ export default function Game() {
   const [currentMove, setCurrentMove] = useState(0);
   let xIsNext = currentMove % 2 === 0;
   let currentSquares = history[currentMove];
-  const [selected, setSelected] = useState(-1);
 
   function handlePlay(nextSquares) {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-    setSelected(nextHistory.length - 1);
   }
   function Back() {
-    if (currentMove===0) return;
-    setSelected(currentMove - 1);
+    if (currentMove === 0) return;
     setCurrentMove(currentMove - 1);
   }
 
   function newGame() {
     setHistory([Array(9).fill(null)]);
     setCurrentMove(0);
-    setSelected(-1);
   }
-
 
   return (
     <div className="Game">
@@ -39,22 +34,12 @@ export default function Game() {
       <div className="Game-info">
         <ul className="list-group">
           <li>
-            <button
-              className={
-                 "buttons"
-              }
-              onClick={() => newGame()}
-            >
+            <button className={"buttons"} onClick={() => newGame()}>
               New Game
             </button>
           </li>
           <li>
-            <button
-              className={
-                 "buttons"
-              }
-              onClick={() => Back()}
-            >
+            <button className={"buttons"} onClick={() => Back()}>
               Back
             </button>
           </li>
